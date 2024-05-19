@@ -1,0 +1,224 @@
+VUE es un framework de interfaces reactivas. 
+Conjunto de herramientas por encima de java/type-script.
+Desarrollo de front-end, desarrollo de frontales.
+VUE es reactivo. Refresca automáticamente la información.
+
+Arquitectura
+MVVM (Modelo Vista Vista Modelo)
+
+Funciona con un DOM virtual. Un DOM contiene toda la información (árbol de etiquetas). 
+Se encarga de realizar las composiciones para nosotros.
+Cada componente va a vigilar/escuchar cuándo están ocurriendo diferentes modificaciones en cada elemento.
+Cada componente (cada dato), vue va a construir un getter y setter para los datos.
+VUE va a escuchar esos cambios de datos y va a solicitar un render para que el virtual DOM se modifique.
+Posteriormente, todos estos datos modificados se dumpearán en el DOM de nuestra página.
+____________________________________________________________________________________________________________
+
+Crear proyecto 
+
+1. vue create <project name>
+2. Pick a preset (En este caso, lo haremos manual)
+    babel: traduce el código al javascript interpretable pal navegador
+    typescript: es más restrictivo
+    progressive web app: construcción nativa web enfocada a visualizarse como aplicación nativa para dispositivo móvil o navegador
+    router: si queremos usar diferentes url o rutas, hacer control de rutas, guardias, etc
+    vuex: gestionar estados globales de la aplicación
+    css pre-processor: ayudarán a construir hojas de estilos eficientemente
+    linter/formatter: analizan estáticamente el código para mejorar la estructura y ayudan a detectar errores potenciales
+    unit testing: tester
+    end to end (E2E) testing: tester
+3. Pick a version
+    Class style o Componentes funcionales
+4. Usar babel con typescript 
+    si usamos typescript preguntará si queremos usar babel para hacer la traducción; es decir, ponle que sí pa!
+5. Elegir un linter 
+    Solo con prevención de errores
+    O de forma que nos obligue a escribir de una forma concreta (airbnb, standard o prettier) + prevención de errores
+6. Cuándo queremos analizar el código (lintear)
+    al guardar
+    cada que hacemos un fix en commit
+7. Elegir el formato de los archivos de configuración del proyecto
+    En un paquete json
+    Archivos de configuración separado (recomendado para evitar código spaguetti en el json)
+8. Si queremos guardar el preset que creamos manualmente :D
+
+Entramos en la carpeta del proyecto cd ./carpeta
+Si ejecutamos "npm run serve", levantará el servidor
+____________________________________________________________________________________________________________
+
+    Qué es cada archivo.
+
+vue.config.js
+    Aquí configuraremos plugins 
+    configuraremos la configuración de vue
+    Config de uso de typescript, acceso a otros servidores, seguridad, etc
+    SIEMPRE será un javascript
+
+tsconfig.json
+    SOLO aparecerá si usamos typescript
+    se configurará el typescript 
+        librerias, paths, elementos (para ser interpretados como códigos typescript):
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "tests/**/*.ts",
+        "tests/**/*.tsx"
+
+readme.md 
+    comandos básicos :D 
+
+package.json
+    generamos nuestro propio paquete de código
+    define nuestro propio paquete
+    paquete privado llamado "nombre-proyecto"
+    cuando llamamos a comandos, realmente hacemos/ejecutamos:
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    también podemos configurar nuestros propios scripts
+    podemos ver dependencias de nuestro proyecto (generales y desarrollo)
+    diccionario que define nuestro paquete. Su función más importante [quizás] es declarar todas las dependencias de nuestro proyecto
+
+package-lock.json
+    control de versiones
+    ayudarnos a recomponer el código si hay algún cambio de versión, etc. 
+
+babel.config.js 
+    marca los presets para nuestro transpilador/traductor 
+
+.gitignore
+    descripción de qué archivos deben subirse y cuáles no :p 
+
+.eslintrc.js
+    si va a estar aplicando a nuestro root
+    reglas de funcionamiento
+    extensiones, etc.
+
+.browserlistrc
+    descripción de los navegadores a los que les damos soporte
+        > 1% :soporte a todos los navegadores que están instalados en más del 1% de la población
+        last 2 versions :soporte a las últimas dos versiones
+        not dead :soporte con navegadores con soporte actual (no moridos/mortidos/muertos)
+        not ie 11 :estamos excluyendo el internet explorer 11 ([¿por qué?])
+
+carpetas: 
+
+    node_modules:
+        no se toca, se instalan todas las dependencias
+        todas las dependencias se almacenan Aquí
+
+        a través del package.json los demás pueden reconstruir el proyecto
+
+    public: 
+        carpeta pública del proyectoxd
+        directorio efectivo que estamos generando
+        elementos públicos
+
+        como index.html (soporta nuestra página) y el favicon.ico
+    
+    src:
+        Carpeta de trabajo
+        Se desarrollan componentes vue
+        
+
+        shim-vue.d.ts 
+            Declaración de tipos y módulos necesarios para typescript
+            si estamos trabajando con typescript
+            tipos de módulos para que typescript funcionales
+            typescript no es tipado flexible (más estricto)
+            este archivo lo hace por nosotros (si usamos javascript no tendremos este archivo)
+        
+        main.ts
+            es ts por typescript (será js si es javascript)
+            archivo encargado de montar en el index el componente app.vue
+
+        App.vue
+            componente principal de la aplicación
+            cada componente que creamos (cada trocito de código) van a ser siempre .vue
+        
+        components (carpeta)
+            lugar donde alojamos el resto de componentes de nuestra aplicación
+        
+        assets
+            diferentes recursos, como imgs, videos, etc
+        
+____________________________________________________________________________________________________________
+
+Flujo y punto de partida
+
+¿Cómo wea funciona el proyecto?
+
+INDEX.HTML (genera un <div ID="APP" />) <-- MAIN.TS/JS (Monta App.vue en el div del index) --> APP.VUE (Muestra el componente <nombredelproyecto>.vue) --> <nombredelproyecto> es el componente que contiene lo que vemos en el navegador
+
+La carpeta public tiene un index.html, 
+    en el index.html tiene el punto de entrada (donde se va a cargar todo el proyecto)
+    lo que hará vue, irá inyectando uno u otro archivo javascript en el index pa que funcionales
+
+    ¿por qué el div id=app funciona?
+        en el main.ts/js --> crea una aplicación de vue y lo va a montar en el id=app que tenemos en la carpeta de componentes --> app.vue
+        index.html tiene el div con el id, el main.ts monta el app.vue en el div y yasta
+
+    en app.vue se encarga de ir montando y desmontando el resto de componentes que se vayan creando
+
+    el componente <nombredelproyecto> tiene lo que se ve
+
+____________________________________________________________________________________________________________
+
+Estructura de un componente
+
+    Cada componente lo definimos con la extensión con el .vue
+    Se nombra normalmente por dos palabras, cada una con mayúscula (HelloWorld.vue)
+
+    tenemos:
+
+    <template>
+        Estamos escribiendo el código html que va a contener nuestra aplicación, etiquetas, divs, h1, imgs, etc
+    </template>
+
+            {EL TEMPLATE TENÍA ESTE DIV, GUARDADO SOLO PARA VER
+            <div class="hello">
+              <h1>{{ msg }}</h1>
+              <p>
+                For a guide and recipes on how to configure / customize this project,<br>
+                check out the
+                <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+              </p>
+              <h3>Installed CLI Plugins</h3>
+              <ul>
+                <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
+                <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
+                <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
+              </ul>
+              <h3>Essential Links</h3>
+              <ul>
+                <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
+                <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
+                <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
+                <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
+                <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
+              </ul>
+              <h3>Ecosystem</h3>
+              <ul>
+                <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
+                <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
+                <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
+                <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
+                <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+              </ul>
+            </div>}
+
+    <script>
+        DATA
+        Contiene la lógica de funcionamiento y los datos de dicho componente
+        En este caso, tiene el lang="ts", es decir que sea typescript y no javascript
+    </script>
+
+    <style>
+        Aquí se escribe el css pues
+        Se pueden escopar estilos o se pueden hacer generales (en este caso únicos para este componente)
+    </style>
+
+
+    
+
+    
