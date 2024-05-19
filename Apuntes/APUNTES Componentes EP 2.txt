@@ -1,0 +1,114 @@
+IMPORTAR COMPONENTES
+    Un componente puede ser cualquier tipo de elemento que se pueda colocar en la página;
+        por ejemplo, podría ser una tarjeta, un botón, etc.
+    Es importante decir que cada elemento es INDEPENDIENTE, es decir, que si el estado de uno cambia EN LA PÁGINA (al hacer uso de alguna función o método), el estado de otro NO CAMBIARÁ, 
+        a pesar de venir del mismo componente.
+
+        Su creación se basa en una estructura básica:
+            <template></template> aquí es donde se coloca el código "html" como en cualquier otro lado, con <div>, <p>, <h1>, etc, etc
+                sin embargo, se le pueden añadir opciones extra, como valores usando {{}}, etc
+          
+            <script></script>   aquí se importan otros componentes, también se debe definir si estamos en TypeScript; 
+                el "setup" se coloca antes de cerrar el > como atajo               
+                    el setup se hace para evitar hacer esto dentro del script, es útil no hacerlo cuando quieres configurar funciones, datos, etc. Al incluir el setup en el script, no es necesario estar definiendo nada, es un método abreviado:
+                       
+                        PARA OPTION API
+
+                        import {defineComponent} from "vue";
+
+                        import MiComponente1 from './MiComponente1.vue'
+                            ...
+                        import MiComponenteN from './MiComponenteN.vue'
+
+                        export default defineComponent({
+                            name: 'NombreComponente',
+                            components: {MiComponente1, MiComponente2, MiComponenteN}   <-- En caso de no haber ningún componente extra, ni se importan anteriormente, ni se coloca nada dentro de los {}
+                            data() {
+                                se hacen los let y los return de dichos let de forma:
+
+                                let contador = 0;
+                                return {contador}
+                            },
+                            methods: {
+                                se agregan los metodos o funciones que queremos que se hagan como:
+
+                                metodo1() {
+                                    this.contador++
+                                }
+                            }
+
+                        })
+
+                        En COMPOSITION API es diferente, pues se usa el "setup()" para definir funciones y datos
+ Esto es para el counter, que es un tipo de dato ref <-|    |-> el ref (referencia) de aquí es el que nos da control, pues permite que el counter sea reactivo y permita funcionar correctamente aumentando su valor                    
+                                                       |    |   Aunque claramente, hay más opciones a parte del ref
+                            import { defineComponent, Ref, ref} from "vue"
+                            export default defineComponent ({
+                                name: 'CounterComposition',
+                                setup() {
+                                    let counter:Ref = ref(0)
+                                                            |->Aquí el :void es debido a que no regresa un valor, solo actualiza, ese es el tipo que es
+                                    const addCounter = ():void => {
+                                        counter.value++
+                                    }
+                                    return {counter, addCounter}
+                                }
+                            })
+                        
+                        También se puede evitar definir el nombre, el "setup() {}" y lo que va a retornar dejando solo la función y colocando el "setup" al inicio
+                            import { defineComponent, Ref, ref} from "vue"
+                            let counter:Ref = ref(0)
+                            const addCounter = ():void => {
+                                counter.value++
+                                } 
+                        Siendo de forma más sencilla
+
+
+            <style></style>  dentro del style, si elegimos "scoped", hará que el estilo solo sea de este componente
+    Cada que creamos componentes podemos crear etiquetas 
+    Dichas etiquetas se utilizan "<NombreComponente/>"
+    Sin embargo, se necesita importar directamente el componente en el script del componente al que se va a importar:
+
+        <script lang="ts" setup>
+            import <NombreComponente/> from './NombreComponente.vue'
+        </script>
+    
+_____________________________________________________________________________________________________________________
+
+Algo útil de usar en la página es el VUE DevTools, la extensión de chrome. Permite ver los componentes de forma más fácil.
+    TENER CUIDADO de la interposición con otras extensiones, por ejemplo si tienes "Merlin (AI plugin)" activado, al estar superpuesta generará conflictos.
+
+_____________________________________________________________________________________________________________________
+
+OPTION API vs COMPOSITION API
+    Cada uno tiene su filosofía de trabajo
+
+Option API
+    Define un componente/objeto que describe el contenido de una forma muy sencilla de entender
+    
+    export default {
+        name:"ComponentName",
+        props: {...},     <-- Props
+        data() {...},     <-- Data variables
+        computed: {...},  <-- Computed props
+        methods: {...},   <-- Functions
+        mounted() {...},  <-- Mounted hook (lifecyccle)
+    }
+
+Composition API (Lo más común)
+    Está más enfocada en hooks (Como se trabaja en react u otras librerías similares)
+    Brinda MAYOR control
+
+    export default {
+        name:"ComponentName",
+        props: {...},  <-- Props
+        setup() {
+            init, logic, lifecycle, hooks, etc.
+        }
+          return {
+            data, methods, computed, etc.
+          } 
+    }
+
+
+
