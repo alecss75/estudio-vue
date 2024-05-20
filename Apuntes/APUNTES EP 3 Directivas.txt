@@ -1,0 +1,66 @@
+DIRECTIVAS 
+
+Las directivas van a funcionar como atributos (Modificar o realizar una acción)
+    Las que utilizaremos serán atributos especiales precedidos automáticamente por la nomenclatura uv-
+        Harán acciones dentro del virtual DOM
+El objetivo de una directiva es actuar sobre el virtual DOM, lograremos modificar el renderizado
+    Acciones dinámicas de forma sencilla
+    Modificar de forma sencilla componentes (cómo se renderiza, qué se renderiza, reactividad, apariencia, etc)
+
+<etiqueta v-on:nombre.modificador="valor"></etiqueta>
+    <button v-on:click.stop="doThis"></button>
+
+Existes directivas básicas, selectivas, de recorrido de estructura, de renderizado, vinculadas a eventos, etc. y también podemos crear nuestras propias directivas.
+
+_________________________________________________________________________________________________________________
+
+Las que existen y están ocupadas en la página helloworld: 
+
+    v-if="acá va un if" <-- Renderizado condicional
+        Cuando hacemos un v-if es "pintar" o "no pintar" un nodo eliminándolo (o añadiéndolo si cumple la condición) del virtual DOM
+            Se utiliza cuando no se modificará demasiado, o si se hace una acción puntual (deja un DOM más pequeño, de forma limpia)
+                Pero si los elementos cambian constantemente, el rendimiento bajará DEMASIADO
+
+    v-else 
+        Se usa después de un if, no necesita un ="", porque es el else del anterior
+
+    v-show="" <-- Renderizado condicional
+        Pinta todos los nodos, sin embargo, dentro del css está aplicándole "display=none"
+            Se utiliza cuando comprobaciones se realizan constantemente
+                Es más fácil estar mostrando o no ciertos nodos, en vez de estar agregándolos o eliminándolos del DOM
+    
+    
+    v-for="nombre in array" [no olvides poner el v-bind]> {{nombre}}
+        Se puede utilizar para recorrer un array y pintarlo.
+            Para que pinte, cada nodo tiene que tener un identificador diferente
+                Cuando la lista tenga valores repetidos, puede usarse el index
+                    v-for="(nombre, index) in array" [identificador]> {{nombre}}
+        
+        {{
+            
+         |-> Este vbind estamos usándolo para el v-for
+         |
+        v-bind:key="nombre">
+            Esta directiva es utilizada para usar un identificador.
+                Normalmente utilizado en los v-for.
+                    Cuando la lista tenga valores repetidos, el identificador pasa a ser el index   
+                        v-bind:key="index">
+                            Se puede abreviar usando únicamente :key
+        }}
+
+    v-bind
+        Permite asociar datos de una etiqueta que tenemos en nuestro template a nuestro sistema de datos
+            nos permite bindear variables a las estiquetas
+                Se puede resumir solo con dos puntos ":"
+        
+        Existen 
+            :class -> Para asociar una clase 
+            :style -> Para asociar un estilo
+
+
+    v-on
+        Se usa para manejar eventos:p 
+            Como el on click
+                Se puede resumir con un arroba "@"
+
+    
