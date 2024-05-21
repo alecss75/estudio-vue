@@ -1,0 +1,35 @@
+Formularios
+
+Es necesario hacer un bindeo bidireccional entre el script y la vista que tenemos en el template
+    Los datos del componente gobiernan la vista, pero la información recibida en la vista actualiza los datos.
+        "Bidireccional"
+
+_________________________________________________________________________________________________________________
+
+Al hacer un input dentro de un Formularios, si queremos que la información introducida sea utilizada
+    Es necesario utilizar v-model
+        Se utiliza colocándolo en el input y asignándole una variable (creada con anterioridad en el script)
+
+_________________________________________________________________________________________________________________
+
+Snippets
+Un snippet es para agilizar la creación de código
+    Si ya tienes un código que utilizarás constantemente, generas un snippet.
+        Como lo puede ser la estructura de los componentes, con template, script y style.
+
+Para generar un snippet puedes utilizar:
+https://snippet-generator.app/
+    No olvides de describirlo bien y darle un buen tab-trigger, fácil de recordar
+
+Para configurar tus snippets sigue los sigs pasos:
+(Una vez ya hayas copiado el snippet de la página)
+    1. Ir a File/Archivo en vscode (Mira arriba a la izquierda pa')
+    2. Elige o coloca el mouse sobre Preferences/Preferencias
+    3. Clickea en Configure User Snippets
+    4. Elige el archivo o el file. Si no has creado uno, elige el lenguaje para el que lo vas a crear.
+    5. Copia el snippet dentro del archivo que se genera.
+    6. Disfruta.
+
+
+_________________________________________________________________________________________________________________
+

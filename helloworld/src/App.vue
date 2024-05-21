@@ -12,6 +12,8 @@
   <ExampleFor/>
   <h2>Ejemplo de directiva BIND</h2>
   <ClassBind/>
+  <h2>Ejemplo de Bindeo/Formulario</h2>
+  <ModelForm/>
 </template>
   
 <script lang="ts" setup>
@@ -21,6 +23,7 @@
   import ExampleSelective from './components/ExampleSelective.vue'
   import ExampleFor from './components/ExampleFor.vue'
   import ClassBind from './components/ClassBind.vue'
+  import ModelForm from './components/ModelForm.vue'
 </script>
 
 <style>

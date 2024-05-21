@@ -1,6 +1,6 @@
 <template>
-<h1 v-if="age > 18">Eres menor de edad</h1>
-<h2 v-else>Eres mayor de edad</h2>
+<h4 v-if="age > 18">Eres menor de edad</h4>
+<h4 v-else>Eres mayor de edad</h4>
 </template>
 
 <script lang="ts" setup>
