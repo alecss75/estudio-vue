@@ -14,6 +14,10 @@
   <ClassBind/>
   <h2>Ejemplo de Bindeo/Formulario</h2>
   <ModelForm/>
+  <h2>Ejemplo de Ciclo de vida (CycleOptions)</h2>
+  <CycleOptions/>
+  <h2>Ejemplo de comunicación vertical</h2>
+  <PostList/>
 </template>
   
 <script lang="ts" setup>
@@ -24,6 +28,8 @@
   import ExampleFor from './components/ExampleFor.vue'
   import ClassBind from './components/ClassBind.vue'
   import ModelForm from './components/ModelForm.vue'
+  import CycleOptions from './components/CycleOptions.vue'
+  import PostList from './components/PostList.vue'
 </script>
 
 <style>

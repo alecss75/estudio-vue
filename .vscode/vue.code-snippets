@@ -31,5 +31,13 @@
 		  "</style>"
 		],
 		"description": "Vue Component TypeScript with Setup"
+	  },
+	  "LOREM-IPSUM copypaste": {
+		"prefix": "lorem",
+		"body": [
+		  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sodales arcu at felis pulvinar egestas. Mauris consectetur massa vel blandit consequat."
+		],
+		"description": "LOREM-IPSUM copypaste"
 	  }
+	  
 }

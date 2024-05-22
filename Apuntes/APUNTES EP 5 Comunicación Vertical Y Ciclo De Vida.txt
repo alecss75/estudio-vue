@@ -1,0 +1,123 @@
+Ciclo de vida.
+
+A veces es necesario que componentes desaparezcan o hagan ciertas acciones para que continúe la experiencia de la página.
+        Es decir, cuando queremos que se ejecuten ciertas acciones cuando aparezca un componente.
+        O cuando queremos que se ejecuten ciertas acciones cuando se actualice (datos o similar) un componente.
+            Entre otras muchas opciones.
+
+Dentro de la documentación de vue también hay info: https://vuejs.org/api/options-lifecycle.html
+    Sin embargo, en esta página hay un diagrama que lo explica bien: https://codingpotions.com/vue-ciclo-vida/
+
+    Cuando un componente es llamado, vue inicializa su ciclo de vida y sus elementos.
+    
+    Cuando se inicializa, el primer evento es "beforeCreate", que podemos utilizar. 
+        No se ha generado inyecciones ni nada, pero podemos comenzar a hacer acciones.
+            
+    Después, inicalizan los eventos de inyecciones y reactividad. 
+        Podemos utilizar otro evento llamado "created", podemos utilizar hooks para realizar acciones.
+            Si queremos hacer consumos a una API, datos de un sistema y le queremos pedir a nuestro backend que nos de info, es el momento perfecto.
+                El virtual DOM no ha pintado los elementos en la pantalla.
+    
+    Una vez se inicializa, se verifica si nuestro componente tiene opciones de "el".
+        El "el" es el elemento que vamos a estar referenciando dentro de la construcción html.
+            VUE va a dejar todo preparado para que el componente en su ciclo de vida, colocarlo, pintarlo en el navegador.
+
+    Justo antes de que sea pintado, existe el evento "beforeMount".
+        Es un evento que podemos utilizar para realizar acciones como comprobaciones justo antes de que se monte el elemento.
+
+    Después, el componente se monta y se ejecuta el evento de "mounted".
+        Es el clásico para inicializar ciertas acciones.
+
+    Una vez es montado, podemos llamar el elemento y el ciclo de vida va a estar escuchando los cambios dentro del elemento.
+        Lo que colocamos dentro del script, cambios en los datos.
+    
+    Cuando se detecta un cambio, podemos llamar a dos eventos. Que se repite indefinidamente en lo que existe el componente.
+        El "beforeUpdate", antes que los cambios sean reflejados en el navegador.
+            Si queremos hacer una acción antes de que se hagan los cambios.
+
+        El "updated", justo después de que se reflejen los datos.
+            Podemos realizar construcciones en este momento en concreto.
+    
+    Cuando deja de ser visto, existen dos eventos también.
+        El "beforeUnmount" (antes llamado "beforeDestroyed") y el "unmounted" (antes llamado "destroyed").
+            Funcionan exactamente igual que el "beforeUpdate" y el "updated"
+                Uno se ejecuta antes de que se desmonte y otro justo después de que sea desmontado.
+
+____________________________________________________________________________________________________________________________
+
+
+Para OPTION API
+    import { DefineComponent } from 'vue';
+    export default defineComponent({
+        name: 'CycleOption',
+        data() {
+
+        },
+        methods: {
+            
+        },
+        created() {
+            
+        },
+        mounted() {
+            
+        },
+        updated() {
+            
+        },
+        unmounted() {
+            
+        },
+    })
+
+Para COMPOSITION API con Setup
+    import { onMounted, onUpdated } from 'vue'
+
+    onMounted(() => {
+        console.log("Mounted")
+    })
+
+    onUpdated(() => {
+        console.log("Updated")
+    })
+
+____________________________________________________________________________________________________________________________
+
+Comunicación vertical:
+    Comunicación descendente:
+        Cuando un componente padre pasa información a sus hijos y los "nietos" (hijos de los hijos)
+            Es decir, si el padre tiene un componente dentro, y este componente dentro tiene otro componente dentro.
+            |->El padre hace llamada al backend para conseguir información y lo va pasando a sus hijos, para que sepan qué pintar/mostrar.
+        Comp.padre (Desciende info)  |
+            |                        |
+        Comp.hijo (Dentro del padre) |   La información pasa desde el padre hasta los hijos
+            |                        |   Es IMPORTANTE que cuando se usa info descendente, la info DEBE pasarse y tratarse en modo lectura.
+        Comp.nieto(hijo del hijo)    |       El hijo NO DEBE DE MODIFICAR la información que viene desde el padre.
+                                     ▼           
+    
+    Comunicación vertical:
+        Si un hijo quiere comunicar un cambio o solicitar una acción a su componente padre, puede comunicarselo y también el padre a su respectivo padre.
+            Se realiza a través de la emisión de un evento (emit)
+                    ▲
+        Comp.padre  |
+            |       |      Lo apropiado sería que el hijo solicite al padre que modique la información.
+        Comp.hijo   |           A través de emisión de eventos, el padre MODIFICA la información que el hijo pide.
+            |       |
+        Comp.nieto  |
+    
+____________________________________________________________________________________________________________________________
+
+Para pasar información a nuestros comp. hijos, usamos props.
+    Los props nos permiten pasar datos a nuestros componentes al momento de utilizarlos
+        Comunicación vertical descendente.
+
+Para pasar información de nuestros comp. hijos a comp. padres usamos emits.
+    Los emits, como su nombre lo indica, son básicamente emisiones o notificaciones de eventos que suceden dentro del componente hijo.
+        Comunicación vertical ascendente.
+
+    
+Para entender mejor, revisa PostList y PostDetail.  
+
+
+
+            
