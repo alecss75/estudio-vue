@@ -18,6 +18,14 @@
   <CycleOptions/>
   <h2>Ejemplo de comunicación vertical</h2>
   <PostList/>
+  <h2>Ejemplo de comunicación vertical hecho en setup</h2>
+  <ListSetup/>
+  <h2>Ejemplo de dato computado en composition</h2>
+  <ComputedComposition/>
+  <h2>Ejemplo de dato computado en option</h2>
+  <ComputedOption/>
+  <h2>Ejemplo de impuestos con datos computados</h2>
+  <TaxExample/>
 </template>
   
 <script lang="ts" setup>
@@ -30,6 +38,10 @@
   import ModelForm from './components/ModelForm.vue'
   import CycleOptions from './components/CycleOptions.vue'
   import PostList from './components/PostList.vue'
+  import ListSetup from './components/ListSetup.vue'
+  import ComputedComposition from './components/ComputedComposition.vue'
+  import ComputedOption from './components/ComputedOption.vue'
+  import TaxExample from './components/TaxExample.vue'
 </script>
 
 <style>

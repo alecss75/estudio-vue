@@ -1,0 +1,9 @@
+Datos computados
+
+Ocasionalmente tenemos elementos que queremos que sean reactivos, pero que dependen de otros valores.
+    Por ejemplo, supongamos que tenemos un valor referenciado que sea una cadena de texto y podemos tener otro dato distinto que sea, por ejemplo, esa misma cadena pero al revés.
+        Si queremos que sea referenciado, pero este a su vez ya está haciendo referencia a la primera cadena de texto.
+            Esto es un dato computado, requerimos de hacer ciertos cálculos para usarlo.    
+                Un valor computado es un valor que se actualiza "automáticamente"
+
+
