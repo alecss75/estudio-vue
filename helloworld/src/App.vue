@@ -26,6 +26,8 @@
   <ComputedOption/>
   <h2>Ejemplo de impuestos con datos computados</h2>
   <TaxExample/>
+  <h2>Ejemplo de directivas personalizadas</h2>
+  <PersonalizedDirective/>
 </template>
   
 <script lang="ts" setup>
@@ -42,6 +44,8 @@
   import ComputedComposition from './components/ComputedComposition.vue'
   import ComputedOption from './components/ComputedOption.vue'
   import TaxExample from './components/TaxExample.vue'
+  import PersonalizedDirective from './components/PersonalizedDirective.vue'
+  
 </script>
 
 <style>

@@ -1,0 +1,26 @@
+Las directivas están enfocadas al uso y trabajo del virtual DOM.
+    Se enfocan en cómo visualizamos nuestro proyecto, enfocadas en la manipulación de las etiquetas de nuestro contenido.
+        Cuando usamos etiquetas que no nos esté proveyendo VUE, ocupamos directivas personalizadas.
+
+Existen dos formas.
+    Que es solamente en el componente: 
+        La directiva solamente funcionará dentro del componente en la que se está creando.
+            No es lo más habitual. Lo que nos interesa es que un conjunto de nuestros componentes pueda ser usada.
+
+    En el proyecto en general.
+        La directiva va a funcionar en un conjunto de componentes.
+            Una forma de generarlas es dentro del "main.ts" o "main.js" (dependiendo de cuál estemos usando)
+
+            Se define con: 
+            .directive('nombre con el que se va a llamar', {
+                el momento del ciclo de vida donde funcionará: (el, binding) => {
+                    se definirá una función
+                        Dentro de esta función, podemos hacer uso del elemento y el binding.
+                            Con el binding, podemos usar arg, value o modifiers dependiendo de lo que queramos hacer
+                                Dentro del main.ts de helloworld, encontrarás ejemplos sobre cómo utilizarlos.
+                }
+            })
+
+            donde:  
+                "el" es la etiqueta final donde va a quedar aplicada la directiva. El nodo que vamos a estar utilizando. (como h2, div, etc)
+                "binding" son los datos que vamos a estar recibiendo en esta directiva para poder ejecutar las acciones o customizar las opciones que va a tener nuestra directiva.
