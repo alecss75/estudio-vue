@@ -1,0 +1,36 @@
+Servicios
+
+Es importante hacer una buena estructuración de código.
+    Se va a ver desde la perspectiva de servicios y consumo de datos.
+        Cuando hacemos un consumo de datos hacia una API o algún desarrollo externo, algún backend.
+        Lo habitual es no hacer el consumo directamente al componente.
+            Para no tener que ir buscando el consumo en todos los componentes.  
+            Los componentes van a ser muy densos. 
+    
+        Lo habitual es tener una carpeta de servicios.
+            Lo que hacemos es crear una clase que se encargue de buscar los datos, recuperar los datos y enviárselos al componente.
+                Así se va a lidiar toda la gestión del consumo de datos.
+                    Separamos el componente en sí de las peticiones de consumo de datos.
+            
+            Generamos una carpeta de servicios en la carpeta src.
+                Dentro colocamos el servicio con la extensión del lenguaje que estemos utilizando.
+                    Es recomendable que los servicios sigan una nomenclatura.
+            
+
+Tipado de datos
+
+Para el tipado de datos, podemos utilizar interfaces
+    Existen muchos tipos de nomenclatura para las interfaces.
+        El usado es I<nombre-elemento>.ts
+
+
+
+Es importante mantener buenas estructuras de código.
+    A medida de que la lógica sea más compleja y generemos más componentes, a medida de que crezca el proyecto, revisarlo será más difícil.
+        Es por eso que es importante mantener un código más limpio con una estructuración de código.
+            Por eso se usa el derivar los servicios a una zona completa de código.
+                Para encontrar los consumos a API de forma más rápida y sencilla.
+    
+            Por eso también se exporta a una carpeta de interfaces o de tipos para definir las estructuras.
+
+            Es importante también marcar nomenclaturas claras, para entender qué es cada elemento de forma más sencilla.
