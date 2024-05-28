@@ -1,0 +1,52 @@
+Estilos
+
+    Buenas prácticas de estructura.
+        Conforme vaya creciendo el proyecto, podremos usar distintas estructuras.
+            
+        Para una buena práctica de estructuración, se pueden particionar los estilos
+            Por ejemplo, si vamos a estar utilizando diferentes colores, podemos usar variables de color.
+                Esto puede funcionar con diferentes estilos, como fuentes, no solamente el color.
+
+        El objetivo es particionar el código y conseguir reusabilidad del código.
+            "Parametrizar" el contenido.
+                Esto permitirá añadir nuevas mejoras, con un código más sencillo y corto.
+
+        Esto lo podemos lograr con preprocesadores CSS y una buena estructuración de contenido.
+
+_________________________________________________________________________________________________________________
+
+Para instalar un preprocesador de CSS en un nuevo proyecto, no es más que retomar los pasos que vimos en el primer capítulo de apuntes.
+    Es decir, en el preset, elegimos manual y como vimos en el primer apunte, elegimos pre-processor CSS.
+    La creación del proyecto continúa siendo la misma.
+
+Para instalar un preprocesador de CSS en un proyecto YA andando, tampoco es complicado, no es más que instalar los paquetes con npm.
+    En la consola/terminal, escribimos lo siguiente:
+        npm install -D sass-loader sass
+            El -D es una abreviación que indica que el paquete que estás instalando debe ser guardado como una dependencia de desarrollo en tu proyecto.
+            sass-loader es el loader de sass
+            y sass es el preprocesador
+
+            Si quieres utilizar otro, no es más que solamente cambiar el nombre en el -loader y el solito por el preprocesador que quieres utilizar.
+                Normalmente se utiliza sass porque es el más común y hay más documentación.
+                    Pero en general todos son muy similares.
+
+Cuando utilizamos un preprocesador, tenemos que indicarselo a la etiqueta de style con lang="scss" <-- Dependiendo del preprocesador que estés utilizando.
+
+Para la estructuración, es recomendable crear una carpeta en src que contenga.
+    E irlo separando por uso. En proyectos pequeños normalmente solo se crea una carpeta de variables.
+
+        Por convención, es habitual que la nomenclatura sea de la forma:
+            "_variables.css", intercambiando "variables" por cualquier otra cosa que necesitemos, como colors, fonts, etc, etc.
+            Dentro, la definición de variables es con $, así puedes definir variables para el background, el color primario, secundario, etcetc.
+
+Pero una vez creadas las variables, no están directamente disponibles para su uso, sino que es necesario entrar al vue.config.js
+    Dentro, aplicamos este código (modifícalo usando el nombre de tu archivo, nombre de carpeta y sobre todo el preprocesador usado):
+    css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `
+        @import "@/scss/_variables.scss"
+        ` 
+      }
+    }
+  }

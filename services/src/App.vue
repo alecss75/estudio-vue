@@ -6,6 +6,6 @@
 import PostList from './components/PostList.vue'
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
